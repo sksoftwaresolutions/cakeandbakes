@@ -193,7 +193,7 @@ function Hero() {
           <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-white/85 max-w-xl">
             Custom Cakes, Fresh Pastries, Delicious Desserts & Bakery Specials — handcrafted with love in the heart of Mehrauli.
           </p>
-          <div className="mt-7 sm:mt-8 flex flex-col xs:flex-row flex-wrap gap-3">
+          <div className="mt-7 sm:mt-8 flex flex-wrap gap-3">
             <a href={BIZ.zomato} target="_blank" rel="noopener" className="btn-hero btn-hero-hover justify-center min-h-11">
               <Cake className="h-4 w-4" /> Order on Zomato
             </a>
