@@ -106,7 +106,9 @@
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; overflow-wrap: break-word; }
   img, video, iframe { max-width: 100%; height: auto; }
   iframe { display: block; }
+  section[id] { scroll-margin-top: 80px; }
 }
+
 
 
 @utility glass {
