@@ -186,7 +186,7 @@ function Hero() {
             <Sparkles className="h-3.5 w-3.5 text-[var(--gold)]" />
             <span className="text-white/90">Mehrauli's Most Loved Bakery</span>
           </div>
-          <h1 className="font-display text-[2.25rem] xs:text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] text-white">
+          <h1 className="font-display text-[2.25rem] sm:text-6xl lg:text-7xl font-bold leading-[1.05] text-white">
             Freshly Baked <br />
             <span className="text-gradient-gold">Happiness</span> Every Day
           </h1>
