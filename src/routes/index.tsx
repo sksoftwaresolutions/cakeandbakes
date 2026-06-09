@@ -112,14 +112,14 @@ function Header() {
   ];
   return (
     <header className={`sticky top-0 z-40 transition-all ${scrolled ? "glass" : "bg-background/60 backdrop-blur-md"}`}>
-      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <div className="h-10 w-10 rounded-full bg-[var(--gradient-warm,linear-gradient(135deg,#d4a24c,#c46b6b))] grid place-items-center shadow-[var(--shadow-gold)]">
+      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-3">
+        <a href="#" className="flex items-center gap-2 min-w-0 flex-1">
+          <div className="h-9 w-9 sm:h-10 sm:w-10 shrink-0 rounded-full bg-[var(--gradient-warm,linear-gradient(135deg,#d4a24c,#c46b6b))] grid place-items-center shadow-[var(--shadow-gold)]">
             <Cake className="h-5 w-5 text-[var(--cocoa)]" />
           </div>
-          <div className="leading-tight">
-            <div className="font-display text-lg font-bold">{BIZ.name}</div>
-            <div className="text-[10px] text-muted-foreground -mt-0.5">Mehrauli, New Delhi</div>
+          <div className="leading-tight min-w-0">
+            <div className="font-display text-base sm:text-lg font-bold truncate">{BIZ.name}</div>
+            <div className="text-[10px] text-muted-foreground -mt-0.5 truncate">Mehrauli, New Delhi</div>
           </div>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
@@ -132,17 +132,17 @@ function Header() {
             <MessageCircle className="h-4 w-4" /> Order Now
           </a>
         </div>
-        <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button className="md:hidden p-2 min-h-11 min-w-11 grid place-items-center shrink-0" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
       {open && (
         <div className="md:hidden border-t border-border bg-background">
-          <div className="px-4 py-3 flex flex-col gap-3">
+          <div className="px-4 py-3 flex flex-col gap-1">
             {links.map(([l, h]) => (
-              <a key={h} href={h} onClick={() => setOpen(false)} className="py-1 text-sm font-medium">{l}</a>
+              <a key={h} href={h} onClick={() => setOpen(false)} className="py-3 text-sm font-medium border-b border-border/50 last:border-0">{l}</a>
             ))}
-            <a href={waLink("Hi! I'd like to place an order.")} className="btn-hero btn-hero-hover mt-2 self-start">
+            <a href={waLink("Hi! I'd like to place an order.")} onClick={() => setOpen(false)} className="btn-hero btn-hero-hover mt-3 self-start">
               <MessageCircle className="h-4 w-4" /> Order Now
             </a>
           </div>
@@ -151,6 +151,7 @@ function Header() {
     </header>
   );
 }
+
 
 /* ---------- HERO ---------- */
 function Hero() {
