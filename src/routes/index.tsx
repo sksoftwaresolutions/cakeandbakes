@@ -163,7 +163,7 @@ function Hero() {
   }, [images.length]);
 
   return (
-    <section className="relative min-h-[92vh] overflow-hidden">
+    <section className="relative min-h-[88vh] sm:min-h-[92vh] overflow-hidden w-full">
       {images.map((src, idx) => (
         <img
           key={idx}
@@ -171,37 +171,40 @@ function Hero() {
           alt="Premium cake from Cakes & Bakes bakery"
           width={1600}
           height={1200}
+          loading={idx === 0 ? "eager" : "lazy"}
+          fetchPriority={idx === 0 ? "high" : "auto"}
+          decoding="async"
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${i === idx ? "opacity-100" : "opacity-0"}`}
         />
       ))}
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-24 pb-32 sm:pt-32 sm:pb-40 min-h-[92vh] flex flex-col justify-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-20 pb-24 sm:pt-32 sm:pb-40 min-h-[88vh] sm:min-h-[92vh] flex flex-col justify-center">
         <div className="max-w-2xl animate-float-up">
-          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs text-cream mb-6">
+          <div className="inline-flex items-center gap-2 glass rounded-full px-3 py-1.5 text-[11px] sm:text-xs text-cream mb-5 sm:mb-6">
             <Sparkles className="h-3.5 w-3.5 text-[var(--gold)]" />
             <span className="text-white/90">Mehrauli's Most Loved Bakery</span>
           </div>
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] text-white">
+          <h1 className="font-display text-[2.25rem] xs:text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] text-white">
             Freshly Baked <br />
             <span className="text-gradient-gold">Happiness</span> Every Day
           </h1>
-          <p className="mt-6 text-base sm:text-lg text-white/85 max-w-xl">
+          <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-white/85 max-w-xl">
             Custom Cakes, Fresh Pastries, Delicious Desserts & Bakery Specials — handcrafted with love in the heart of Mehrauli.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={BIZ.zomato} target="_blank" rel="noopener" className="btn-hero btn-hero-hover">
+          <div className="mt-7 sm:mt-8 flex flex-col xs:flex-row flex-wrap gap-3">
+            <a href={BIZ.zomato} target="_blank" rel="noopener" className="btn-hero btn-hero-hover justify-center min-h-11">
               <Cake className="h-4 w-4" /> Order on Zomato
             </a>
-            <a href={BIZ.swiggy} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm bg-white text-[var(--cocoa)] hover:scale-[1.02] transition-transform shadow-lg">
+            <a href={BIZ.swiggy} target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-11 rounded-full font-semibold text-sm bg-white text-[var(--cocoa)] hover:scale-[1.02] transition-transform shadow-lg">
               <Cookie className="h-4 w-4" /> Order on Swiggy
             </a>
-            <a href={waLink("Hi! I'd like to order from Cakes & Bakes.")} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm border border-white/40 text-white hover:bg-white/10 transition-colors backdrop-blur">
+            <a href={waLink("Hi! I'd like to order from Cakes & Bakes.")} className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-11 rounded-full font-semibold text-sm border border-white/40 text-white hover:bg-white/10 transition-colors backdrop-blur">
               <MessageCircle className="h-4 w-4" /> WhatsApp
             </a>
           </div>
-          <div className="mt-10 flex flex-wrap gap-6 text-white/85 text-sm">
+          <div className="mt-8 sm:mt-10 flex flex-wrap gap-x-5 gap-y-2 text-white/85 text-xs sm:text-sm">
             <div className="flex items-center gap-2"><Star className="h-4 w-4 text-[var(--gold)] fill-[var(--gold)]" /> 4.8 Rated</div>
             <div className="flex items-center gap-2"><Clock className="h-4 w-4" /> Open till Midnight</div>
             <div className="flex items-center gap-2"><Truck className="h-4 w-4" /> Same-Day Delivery</div>
@@ -211,6 +214,7 @@ function Hero() {
     </section>
   );
 }
+
 
 /* ---------- ABOUT ---------- */
 function About() {
