@@ -312,13 +312,14 @@ function FeaturedProducts() {
                   </span>
                 )}
               </div>
-              <div className="p-5">
-                <h3 className="font-display text-lg font-bold">{p.name}</h3>
-                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">{p.desc}</p>
-                <a href={waLink(`Hi! I'm interested in: ${p.name}`)} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary)] hover:gap-2.5 transition-all">
+              <div className="p-4 sm:p-5">
+                <h3 className="font-display text-base sm:text-lg font-bold leading-snug">{p.name}</h3>
+                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed line-clamp-2">{p.desc}</p>
+                <a href={waLink(`Hi! I'm interested in: ${p.name}`)} className="mt-3 sm:mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary)] hover:gap-2.5 transition-all min-h-11">
                   Enquire <MessageCircle className="h-3.5 w-3.5" />
                 </a>
               </div>
+
             </article>
           ))}
         </div>
