@@ -667,8 +667,9 @@ function FloatingButtons() {
 function SectionHeader({ eyebrow, title, light, align = "center" }: { eyebrow: string; title: string; light?: boolean; align?: "center" | "left" }) {
   return (
     <div className={align === "center" ? "text-center" : ""}>
-      <div className={`text-xs uppercase tracking-[0.3em] font-semibold ${light ? "text-[var(--gold)]" : "text-[var(--gold)]"}`}>{eyebrow}</div>
-      <h2 className={`mt-3 text-4xl sm:text-5xl font-bold ${light ? "text-cream" : ""}`}>{title}</h2>
+      <div className={`text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] font-semibold ${light ? "text-[var(--gold)]" : "text-[var(--gold)]"}`}>{eyebrow}</div>
+      <h2 className={`mt-3 text-3xl sm:text-4xl md:text-5xl font-bold ${light ? "text-cream" : ""}`}>{title}</h2>
     </div>
   );
 }
+
