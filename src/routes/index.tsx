@@ -653,16 +653,17 @@ function Footer() {
 function FloatingButtons() {
   return (
     <>
-      <a href={waLink("Hi! I'd like to order.")} aria-label="WhatsApp" className="fixed bottom-5 right-5 z-50 h-14 w-14 rounded-full bg-green-500 grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform">
-        <MessageCircle className="h-6 w-6 text-white" />
-        <span className="absolute inset-0 rounded-full animate-ping bg-green-500/40" />
+      <a href={waLink("Hi! I'd like to order.")} aria-label="Chat on WhatsApp" className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-green-500 grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform">
+        <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+        <span className="absolute inset-0 rounded-full animate-ping bg-green-500/40 pointer-events-none" />
       </a>
-      <a href={`tel:${BIZ.phone}`} aria-label="Call" className="fixed bottom-5 left-5 z-50 h-14 w-14 rounded-full grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform" style={{ background: "var(--gradient-warm)" }}>
-        <Phone className="h-6 w-6 text-[var(--cocoa)]" />
+      <a href={`tel:${BIZ.phone}`} aria-label="Call us" className="fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform" style={{ background: "var(--gradient-warm)" }}>
+        <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-[var(--cocoa)]" />
       </a>
     </>
   );
 }
+
 
 /* ---------- SHARED ---------- */
 function SectionHeader({ eyebrow, title, light, align = "center" }: { eyebrow: string; title: string; light?: boolean; align?: "center" | "left" }) {
