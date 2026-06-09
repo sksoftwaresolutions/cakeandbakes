@@ -553,7 +553,7 @@ function ContactForm() {
       <div className="mx-auto max-w-3xl px-4">
         <div className="text-center">
           <div className="text-xs uppercase tracking-[0.3em] text-[var(--gold)] font-semibold">Custom Order</div>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-bold">Order Your Custom Cake</h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold">Order Your Custom Cake</h2>
           <p className="mt-4 text-white/70">Tell us about your occasion — we'll craft something unforgettable.</p>
         </div>
         {status === "ok" ? (
