@@ -112,14 +112,14 @@ function Header() {
   ];
   return (
     <header className={`sticky top-0 z-40 transition-all ${scrolled ? "glass" : "bg-background/60 backdrop-blur-md"}`}>
-      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <div className="h-10 w-10 rounded-full bg-[var(--gradient-warm,linear-gradient(135deg,#d4a24c,#c46b6b))] grid place-items-center shadow-[var(--shadow-gold)]">
+      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-3">
+        <a href="#" className="flex items-center gap-2 min-w-0 flex-1">
+          <div className="h-9 w-9 sm:h-10 sm:w-10 shrink-0 rounded-full bg-[var(--gradient-warm,linear-gradient(135deg,#d4a24c,#c46b6b))] grid place-items-center shadow-[var(--shadow-gold)]">
             <Cake className="h-5 w-5 text-[var(--cocoa)]" />
           </div>
-          <div className="leading-tight">
-            <div className="font-display text-lg font-bold">{BIZ.name}</div>
-            <div className="text-[10px] text-muted-foreground -mt-0.5">Mehrauli, New Delhi</div>
+          <div className="leading-tight min-w-0">
+            <div className="font-display text-base sm:text-lg font-bold truncate">{BIZ.name}</div>
+            <div className="text-[10px] text-muted-foreground -mt-0.5 truncate">Mehrauli, New Delhi</div>
           </div>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
@@ -132,17 +132,17 @@ function Header() {
             <MessageCircle className="h-4 w-4" /> Order Now
           </a>
         </div>
-        <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button className="md:hidden p-2 min-h-11 min-w-11 grid place-items-center shrink-0" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
       {open && (
         <div className="md:hidden border-t border-border bg-background">
-          <div className="px-4 py-3 flex flex-col gap-3">
+          <div className="px-4 py-3 flex flex-col gap-1">
             {links.map(([l, h]) => (
-              <a key={h} href={h} onClick={() => setOpen(false)} className="py-1 text-sm font-medium">{l}</a>
+              <a key={h} href={h} onClick={() => setOpen(false)} className="py-3 text-sm font-medium border-b border-border/50 last:border-0">{l}</a>
             ))}
-            <a href={waLink("Hi! I'd like to place an order.")} className="btn-hero btn-hero-hover mt-2 self-start">
+            <a href={waLink("Hi! I'd like to place an order.")} onClick={() => setOpen(false)} className="btn-hero btn-hero-hover mt-3 self-start">
               <MessageCircle className="h-4 w-4" /> Order Now
             </a>
           </div>
@@ -151,6 +151,7 @@ function Header() {
     </header>
   );
 }
+
 
 /* ---------- HERO ---------- */
 function Hero() {
@@ -162,7 +163,7 @@ function Hero() {
   }, [images.length]);
 
   return (
-    <section className="relative min-h-[92vh] overflow-hidden">
+    <section className="relative min-h-[88vh] sm:min-h-[92vh] overflow-hidden w-full">
       {images.map((src, idx) => (
         <img
           key={idx}
@@ -170,37 +171,40 @@ function Hero() {
           alt="Premium cake from Cakes & Bakes bakery"
           width={1600}
           height={1200}
+          loading={idx === 0 ? "eager" : "lazy"}
+          fetchPriority={idx === 0 ? "high" : "auto"}
+          decoding="async"
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${i === idx ? "opacity-100" : "opacity-0"}`}
         />
       ))}
       <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-24 pb-32 sm:pt-32 sm:pb-40 min-h-[92vh] flex flex-col justify-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-20 pb-24 sm:pt-32 sm:pb-40 min-h-[88vh] sm:min-h-[92vh] flex flex-col justify-center">
         <div className="max-w-2xl animate-float-up">
-          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs text-cream mb-6">
+          <div className="inline-flex items-center gap-2 glass rounded-full px-3 py-1.5 text-[11px] sm:text-xs text-cream mb-5 sm:mb-6">
             <Sparkles className="h-3.5 w-3.5 text-[var(--gold)]" />
             <span className="text-white/90">Mehrauli's Most Loved Bakery</span>
           </div>
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] text-white">
+          <h1 className="font-display text-[2.25rem] sm:text-6xl lg:text-7xl font-bold leading-[1.05] text-white">
             Freshly Baked <br />
             <span className="text-gradient-gold">Happiness</span> Every Day
           </h1>
-          <p className="mt-6 text-base sm:text-lg text-white/85 max-w-xl">
+          <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-white/85 max-w-xl">
             Custom Cakes, Fresh Pastries, Delicious Desserts & Bakery Specials — handcrafted with love in the heart of Mehrauli.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={BIZ.zomato} target="_blank" rel="noopener" className="btn-hero btn-hero-hover">
+          <div className="mt-7 sm:mt-8 flex flex-wrap gap-3">
+            <a href={BIZ.zomato} target="_blank" rel="noopener" className="btn-hero btn-hero-hover justify-center min-h-11">
               <Cake className="h-4 w-4" /> Order on Zomato
             </a>
-            <a href={BIZ.swiggy} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm bg-white text-[var(--cocoa)] hover:scale-[1.02] transition-transform shadow-lg">
+            <a href={BIZ.swiggy} target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-11 rounded-full font-semibold text-sm bg-white text-[var(--cocoa)] hover:scale-[1.02] transition-transform shadow-lg">
               <Cookie className="h-4 w-4" /> Order on Swiggy
             </a>
-            <a href={waLink("Hi! I'd like to order from Cakes & Bakes.")} className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm border border-white/40 text-white hover:bg-white/10 transition-colors backdrop-blur">
+            <a href={waLink("Hi! I'd like to order from Cakes & Bakes.")} className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-11 rounded-full font-semibold text-sm border border-white/40 text-white hover:bg-white/10 transition-colors backdrop-blur">
               <MessageCircle className="h-4 w-4" /> WhatsApp
             </a>
           </div>
-          <div className="mt-10 flex flex-wrap gap-6 text-white/85 text-sm">
+          <div className="mt-8 sm:mt-10 flex flex-wrap gap-x-5 gap-y-2 text-white/85 text-xs sm:text-sm">
             <div className="flex items-center gap-2"><Star className="h-4 w-4 text-[var(--gold)] fill-[var(--gold)]" /> 4.8 Rated</div>
             <div className="flex items-center gap-2"><Clock className="h-4 w-4" /> Open till Midnight</div>
             <div className="flex items-center gap-2"><Truck className="h-4 w-4" /> Same-Day Delivery</div>
@@ -210,6 +214,7 @@ function Hero() {
     </section>
   );
 }
+
 
 /* ---------- ABOUT ---------- */
 function About() {
@@ -225,7 +230,7 @@ function About() {
         </div>
         <div>
           <div className="text-xs uppercase tracking-[0.3em] text-[var(--gold)] font-semibold">About Us</div>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-bold">Welcome to <span className="text-gradient-gold">Cakes & Bakes</span></h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold">Welcome to <span className="text-gradient-gold">Cakes & Bakes</span></h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
             A trusted neighborhood bakery serving delicious cakes, pastries, desserts, and bakery delights. We specialize in custom cakes for birthdays, anniversaries, weddings, and special occasions.
           </p>
@@ -296,7 +301,7 @@ function FeaturedProducts() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search cakes, pastries..." className="w-full glass rounded-full pl-11 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[var(--gold)]" />
         </div>
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {filtered.map((p) => (
             <article key={p.name} className="group glass rounded-3xl overflow-hidden hover:-translate-y-2 transition-all duration-300">
               <div className="relative aspect-square overflow-hidden">
@@ -307,13 +312,14 @@ function FeaturedProducts() {
                   </span>
                 )}
               </div>
-              <div className="p-5">
-                <h3 className="font-display text-lg font-bold">{p.name}</h3>
-                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">{p.desc}</p>
-                <a href={waLink(`Hi! I'm interested in: ${p.name}`)} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary)] hover:gap-2.5 transition-all">
+              <div className="p-4 sm:p-5">
+                <h3 className="font-display text-base sm:text-lg font-bold leading-snug">{p.name}</h3>
+                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed line-clamp-2">{p.desc}</p>
+                <a href={waLink(`Hi! I'm interested in: ${p.name}`)} className="mt-3 sm:mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--primary)] hover:gap-2.5 transition-all min-h-11">
                   Enquire <MessageCircle className="h-3.5 w-3.5" />
                 </a>
               </div>
+
             </article>
           ))}
         </div>
@@ -547,7 +553,7 @@ function ContactForm() {
       <div className="mx-auto max-w-3xl px-4">
         <div className="text-center">
           <div className="text-xs uppercase tracking-[0.3em] text-[var(--gold)] font-semibold">Custom Order</div>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-bold">Order Your Custom Cake</h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold">Order Your Custom Cake</h2>
           <p className="mt-4 text-white/70">Tell us about your occasion — we'll craft something unforgettable.</p>
         </div>
         {status === "ok" ? (
@@ -647,23 +653,25 @@ function Footer() {
 function FloatingButtons() {
   return (
     <>
-      <a href={waLink("Hi! I'd like to order.")} aria-label="WhatsApp" className="fixed bottom-5 right-5 z-50 h-14 w-14 rounded-full bg-green-500 grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform">
-        <MessageCircle className="h-6 w-6 text-white" />
-        <span className="absolute inset-0 rounded-full animate-ping bg-green-500/40" />
+      <a href={waLink("Hi! I'd like to order.")} aria-label="Chat on WhatsApp" className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-green-500 grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform">
+        <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+        <span className="absolute inset-0 rounded-full animate-ping bg-green-500/40 pointer-events-none" />
       </a>
-      <a href={`tel:${BIZ.phone}`} aria-label="Call" className="fixed bottom-5 left-5 z-50 h-14 w-14 rounded-full grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform" style={{ background: "var(--gradient-warm)" }}>
-        <Phone className="h-6 w-6 text-[var(--cocoa)]" />
+      <a href={`tel:${BIZ.phone}`} aria-label="Call us" className="fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-50 h-12 w-12 sm:h-14 sm:w-14 rounded-full grid place-items-center shadow-[var(--shadow-soft)] hover:scale-110 transition-transform" style={{ background: "var(--gradient-warm)" }}>
+        <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-[var(--cocoa)]" />
       </a>
     </>
   );
 }
 
+
 /* ---------- SHARED ---------- */
 function SectionHeader({ eyebrow, title, light, align = "center" }: { eyebrow: string; title: string; light?: boolean; align?: "center" | "left" }) {
   return (
     <div className={align === "center" ? "text-center" : ""}>
-      <div className={`text-xs uppercase tracking-[0.3em] font-semibold ${light ? "text-[var(--gold)]" : "text-[var(--gold)]"}`}>{eyebrow}</div>
-      <h2 className={`mt-3 text-4xl sm:text-5xl font-bold ${light ? "text-cream" : ""}`}>{title}</h2>
+      <div className={`text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] font-semibold ${light ? "text-[var(--gold)]" : "text-[var(--gold)]"}`}>{eyebrow}</div>
+      <h2 className={`mt-3 text-3xl sm:text-4xl md:text-5xl font-bold ${light ? "text-cream" : ""}`}>{title}</h2>
     </div>
   );
 }
+
