@@ -230,7 +230,7 @@ function About() {
         </div>
         <div>
           <div className="text-xs uppercase tracking-[0.3em] text-[var(--gold)] font-semibold">About Us</div>
-          <h2 className="mt-3 text-4xl sm:text-5xl font-bold">Welcome to <span className="text-gradient-gold">Cakes & Bakes</span></h2>
+          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold">Welcome to <span className="text-gradient-gold">Cakes & Bakes</span></h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
             A trusted neighborhood bakery serving delicious cakes, pastries, desserts, and bakery delights. We specialize in custom cakes for birthdays, anniversaries, weddings, and special occasions.
           </p>
